@@ -1,0 +1,127 @@
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 1em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.sticky-container {
+  position: sticky;
+  top: 0;
+  background-color: black; /* Adjust as needed for your background */
+  padding: 10px 20px; /* Increased horizontal padding for more breadth */
+  z-index: 1000; /* Ensure it stays above other content */
+  margin-top: 10px;
+  width: 100%; /* Ensures it spans the full width of its parent */
+  text-align: center; /* Optional: center align the text */
+}
+
+.stylish-button {
+  background-color: #1e3a8a; /* Deep blue */
+  color: #ffffff; /* White text */
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow */
+  transition: all 0.2s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.stylish-button:hover {
+  background-color: #162b60; /* Darker blue on hover */
+  transform: scale(1.05); /* Zoom effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Deeper shadow on hover */
+}
+
+.stylish-button:active {
+  transform: scale(0.98); /* Button shrinks on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Softer shadow on click */
+}
+
+.bg-yellow-500 {
+  background-color: #f59e0b; /* Yellow color */
+}
+
+.bg-yellow-500:hover {
+  background-color: #d97706; /* Darker yellow on hover */
+}
+
+.bg-green-500 {
+  background-color: #10b981; /* Green color */
+}
+
+.bg-green-500:hover {
+  background-color: #059669; /* Darker green on hover */
+}
+
+.bg-blue-500 {
+  background-color: #3b82f6; /* Light blue */
+}
+
+.bg-blue-500:hover {
+  background-color: #2563eb; /* Darker blue on hover */
+}
+
+.bg-red-500 {
+  background-color: #ef4444; /* Red color */
+}
+
+.bg-red-500:hover {
+  background-color: #dc2626; /* Darker red on hover */
+}
+
+button {
+  transition: all 0.3s ease; /* Smooth transitions for all buttons */
+}
