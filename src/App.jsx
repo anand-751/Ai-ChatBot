@@ -1,33 +1,39 @@
 import { useState } from 'react';
 import axios from 'axios'; // Make sure axios is installed
 import './App.css';
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
 
 function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState(""); // For displaying formatted answer
   const [rawAnswer, setRawAnswer] = useState(""); // For storing raw answer
 
-  async function generateAnswer() {
-    setAnswer(" (Might take few seconds) loading...");
-    try {
-      const response = await axios({
-        url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyBSp1Tb9S-FaqnyICBf4ZpItk6zBhWbL0Y", // Replace with your API key
-        method: "post",
-        data: {
-          contents: [{ parts: [{ text: question }] }],
-        },
-      });
 
-      const rawAnswerText = response.data.candidates[0].content.parts[0].text;
-      const formattedAnswer = formatAnswer(rawAnswerText);
-      setAnswer(formattedAnswer); // Set the formatted answer for display
-      setRawAnswer(rawAnswerText); // Store the raw answer for copying
-      setQuestion(""); // Clear the text area after generating the answer
-    } catch (error) {
-      setAnswer("Error generating answer.");
-      console.error(error);
-    }
+  async function generateAnswer() {
+  const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+
+  setAnswer(" (Might take few seconds) loading...");
+  try {
+    const response = await axios({
+      url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`,
+      method: "post",
+      data: {
+        contents: [{ parts: [{ text: question }] }],
+      },
+    });
+
+    const rawAnswerText = response.data.candidates[0].content.parts[0].text;
+    const formattedAnswer = formatAnswer(rawAnswerText);
+    setAnswer(formattedAnswer);
+    setRawAnswer(rawAnswerText);
+  } catch (error) {
+    setAnswer("Error generating answer.");
+    console.error(error);
   }
+}
+
 
   // Function to format the answer by making text within ** bold
   function formatAnswer(answer) {
@@ -92,6 +98,28 @@ function App() {
     window.speechSynthesis.cancel(); // Stops any ongoing speech synthesis
   };
 
+  async function generateRealTimeAnswer() {
+    setAnswer(" (Fetching real-time data) loading...");
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/realtime", {
+        question: question,
+      });
+
+      const rawAnswerText = response.data.answer;
+      const formattedAnswer = formatAnswer(rawAnswerText);
+      setAnswer(formattedAnswer);
+      setRawAnswer(rawAnswerText);
+      //setQuestion(""); // clear textarea
+    } catch (error) {
+      setAnswer("Error fetching real-time answer.");
+      console.error(error);
+    }
+  }
+
+
+
+
   return (
     <>
       <h1 className="text-3xl font-bold mb-10 text-white">CHAT AI</h1>
@@ -110,9 +138,23 @@ function App() {
           <button className="stylish-button" onClick={generateAnswer}>
             Generate Answer
           </button>
+
           <button className="stylish-button bg-yellow-500 hover:bg-yellow-700" onClick={startSpeechRecognition}>
             🎤 Speak
           </button>
+
+          <button
+            className="btn bg-green-500 hover:bg-green-700"
+            onClick={generateRealTimeAnswer}
+          >
+            Real-Time
+          </button>
+          <div className="pointer-events-none absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2">
+            <span className="bg-gray-700 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+              Try this for real-time data
+            </span>
+          </div>
+
         </div>
 
         {answer && (
