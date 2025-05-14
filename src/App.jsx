@@ -12,27 +12,27 @@ function App() {
 
 
   async function generateAnswer() {
-  const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+    const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
-  setAnswer(" (Might take few seconds) loading...");
-  try {
-    const response = await axios({
-      url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`,
-      method: "post",
-      data: {
-        contents: [{ parts: [{ text: question }] }],
-      },
-    });
+    setAnswer(" (Might take few seconds) loading...");
+    try {
+      const response = await axios({
+        url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`,
+        method: "post",
+        data: {
+          contents: [{ parts: [{ text: question }] }],
+        },
+      });
 
-    const rawAnswerText = response.data.candidates[0].content.parts[0].text;
-    const formattedAnswer = formatAnswer(rawAnswerText);
-    setAnswer(formattedAnswer);
-    setRawAnswer(rawAnswerText);
-  } catch (error) {
-    setAnswer("Error generating answer.");
-    console.error(error);
+      const rawAnswerText = response.data.candidates[0].content.parts[0].text;
+      const formattedAnswer = formatAnswer(rawAnswerText);
+      setAnswer(formattedAnswer);
+      setRawAnswer(rawAnswerText);
+    } catch (error) {
+      setAnswer("Error generating answer.");
+      console.error(error);
+    }
   }
-}
 
 
   // Function to format the answer by making text within ** bold
@@ -102,7 +102,7 @@ function App() {
     setAnswer(" (Fetching real-time data) loading...");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/realtime", {
+      const response = await axios.post("https://ai-logic.onrender.com/api/realtime", {
         question: question,
       });
 
