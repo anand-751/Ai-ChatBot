@@ -37,7 +37,7 @@
 
 ⚙️ Getting Started
 1️⃣ Clone the Repo
-git clone https:[//github.com/yourusername/Ai-ChatBot.git](https://github.com/anand-751/Ai-ChatBot.git)
+git clone https: https://github.com/anand-751/Ai-ChatBot.git
 cd Ai-ChatBot
 
 2️⃣ Install Dependencies
@@ -47,10 +47,10 @@ npm install
 3️⃣ Add Environment Variables
 Create a .env file in the server/ directory:
 
-GROQ_API_KEY=your_groq_key
-OPENAI_API_KEY=your_openai_key
-SERPAPI_KEY=your_serpapi_key
-Choose your preferred LLM provider (OpenAI/Groq/Gemini) and ensure the correct API key is set.
+GROQ_API_KEY=your_groq_key , 
+OPENAI_API_KEY=your_openai_key , 
+SERPAPI_KEY=your_serpapi_key  
+      (Choose your preferred LLM provider (OpenAI/Groq/Gemini) and ensure the correct API key is set)
 
 4️⃣ Run the Server
 cd server
