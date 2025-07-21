@@ -36,8 +36,9 @@
 ---
 
 ⚙️ Getting Started
+                                                     
 1️⃣ Clone the Repo
-git clone https: https://github.com/anand-751/Ai-ChatBot.git
+git clone https: https://github.com/anand-751/Ai-ChatBot.git                           and then              
 cd Ai-ChatBot
 
 2️⃣ Install Dependencies
