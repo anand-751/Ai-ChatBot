@@ -27,7 +27,7 @@
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript
+- **Frontend**: HTML, CSS, JavaScript, React.js
 - **Backend**: Node.js, Express.js
 - **AI Engine**: OpenAI / Gemini / Groq (Pluggable via `.env`)
 - **Scraping/Search**: [SerpAPI](https://serpapi.com/) , Selenium
